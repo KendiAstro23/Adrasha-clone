@@ -28,18 +28,10 @@ const products = [
     { id: '604', name: 'Gold Pendant Necklace', imageUrl: '/images/ank5.jpg', price: 200, description: 'A charming gold pendant necklace.', madeOn: '2023-02-01', materials: 'Silver', bestFor: 'Parties'  },
 ];
   
-  export default function handler(req, res) {
-    const { id } = req.query;
+  // Function to get a product by ID
+const getProductById = (id) => {
+    return products.find((product) => product.id === id);
+  };
   
-    if (id) {
-      const product = products.find((p) => p.id === id);
-      if (product) {
-        res.status(200).json(product);
-      } else {
-        res.status(404).send('Product not found');
-      }
-    } else {
-      res.status(200).json(products);
-    }
-  }
+  module.exports = { products, getProductById };
   
