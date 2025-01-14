@@ -1,4 +1,4 @@
-app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 const products = [
     { id: '101', name: 'Silver Necklace', imageUrl: '/images/neck2.jpg', price: 200, description: 'A classic silver necklace.', madeOn: '2023-01-01', materials: 'Gold', bestFor: 'Weddings' },

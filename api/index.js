@@ -1,6 +1,5 @@
 // api/index.js
 
-const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -11,7 +10,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use('/images', express.static(path.join(__dirname, 'images')));  // Serve images
+app.use('/images', express.static(path.join(__dirname, '../public/images')));  // Serve images from public/images
 
 // Root route
 app.get('/', (req, res) => {
@@ -28,5 +27,5 @@ app.get('/api/products/:id', (req, res) => {
   }
 });
 
-// Export the API for Firebase functions
-exports.api = functions.https.onRequest(app);
+// Vercel serverless function export
+module.exports = app;
