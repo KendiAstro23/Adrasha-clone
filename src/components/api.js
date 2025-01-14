@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://your-project.vercel.app/api';
+const API_URL = 'https://adrasha-clone.vercel.app/';
 
 // Fetch all products
 export const fetchProducts = async () => {
