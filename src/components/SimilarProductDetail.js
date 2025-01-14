@@ -6,10 +6,10 @@ const SimilarProductDetail = () => {
 
   // Mock data for similar products (can be replaced with API calls)
   const similarProducts = [
-    { id: 101, name: 'Silver Necklace', image: '/neck2.jpg', description: 'A classic silver necklace.' },
-    { id: 102, name: 'Gold Pendant Necklace', image: '/neck3.jpg', description: 'A charming gold pendant necklace.' },
-    { id: 103, name: 'Silver Necklace', image: '/neck4.jpg', description: 'A classic silver necklace.' },
-    { id: 104, name: 'Gold Pendant Necklace', image: '/neck5.jpg', description: 'A charming gold pendant necklace.' },
+    { id: 101, name: 'Silver Necklace', image: '/images/neck2.jpg', description: 'A classic silver necklace.' },
+    { id: 102, name: 'Gold Pendant Necklace', image: '/images/neck3.jpg', description: 'A charming gold pendant necklace.' },
+    { id: 103, name: 'Silver Necklace', image: '/images/neck4.jpg', description: 'A classic silver necklace.' },
+    { id: 104, name: 'Gold Pendant Necklace', image: '/images/neck5.jpg', description: 'A charming gold pendant necklace.' },
   ];
 
   // Find the product by ID

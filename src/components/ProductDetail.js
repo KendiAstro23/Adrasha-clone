@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../components/CartContext';
-import axios from 'axios';
+import { fetchProductById } from './api';  // Import fetchProductById from api.js
 import './ProductDetail.css'; // Optional: Add styles for the confirmation message
 
 const ProductDetail = () => {
@@ -17,10 +17,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     console.log('Fetching product with ID:', id);
-    axios
-      .get(`http://localhost:5000/api/products/${id}`)
-      .then((response) => {
-        setProduct(response.data);
+    fetchProductById(id)  // Use fetchProductById from api.js
+      .then((data) => {
+        setProduct(data);
         setError(null); // Clear any previous errors
       })
       .catch((error) => {
