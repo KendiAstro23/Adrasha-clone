@@ -80,3 +80,54 @@
 .nav-button:hover {
   background-color: #11a0d8;
 }
+
+
+/* Media Query for Mobile (Devices with width <= 768px) */
+@media (max-width: 768px) {
+  /* Adjust product container to display items horizontally with scrolling */
+  .product-container {
+    display: flex;
+    flex-wrap: nowrap; /* Keep items in a single row */
+    justify-content: flex-start;
+    gap: 20px; /* Space between items */
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    padding: 10px; /* Add padding for spacing */
+  }
+
+  /* Adjust each product item to a fixed width for mobile */
+  .product-item {
+    flex: 0 0 300px; /* Set fixed width for each product */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto; /* Adjust height automatically */
+    margin: 10px; /* Add spacing between images */
+  }
+
+  /* Adjust gallery layout for mobile */
+  .product-gallary {
+    height: auto; /* Allow the height to adjust based on content */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 20px; /* Ensure space for the scroll */
+  }
+
+  /* Adjust the "View Similar Products" button style for mobile */
+  .view-similar-products {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #940b82;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .view-similar-products:hover {
+    background-color: #b400a1;
+  }
+}
