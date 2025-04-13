@@ -129,4 +129,31 @@
   .view-similar-products:hover {
     background-color: #b400a1;
   }
+  .nav-button {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: #0dd650;
+    color: #1051ca;
+    border: none;
+    padding: 8px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 30%;
+    opacity: 1; /* Fully opaque */
+  }
+  
+  .nav-button-left {
+    left: 10px;
+  }
+  
+  .nav-button-right {
+    right: 10px;
+  }
+  
+  .nav-button:hover {
+    background-color: #11a0d8;
+  }
+  
 }
