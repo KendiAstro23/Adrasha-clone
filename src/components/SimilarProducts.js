@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import './SimilarProducts.css';
+// import './SimilarProducts.css';
 
 const SimilarProducts = () => {
   const { id } = useParams(); // Extract the ID from the URL

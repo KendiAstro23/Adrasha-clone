@@ -2,15 +2,17 @@ import React, { createContext, useState, useContext } from 'react';
 
 // Create CartContext
 export const CartContext = createContext();
+export const WishlistContext = createContext();
 
-// Custom hook to use CartContext
-export const useCart = () => {
-  return useContext(CartContext);
-};
+// Custom hooks
+export const useCart = () => useContext(CartContext);
+export const useWishlist = () => useContext(WishlistContext);
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
+  // Cart functions
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -37,11 +39,24 @@ const CartProvider = ({ children }) => {
     );
   };
 
+  // Wishlist functions
+  const addToWishlist = (product) => {
+    setWishlist((prev) =>
+      prev.some((item) => item.id === product.id)
+        ? prev
+        : [...prev, product]
+    );
+  };
+
+  const removeFromWishlist = (id) => {
+    setWishlist((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
-    <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity }}
-    >
-      {children}
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+      <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist }}>
+        {children}
+      </WishlistContext.Provider>
     </CartContext.Provider>
   );
 };
