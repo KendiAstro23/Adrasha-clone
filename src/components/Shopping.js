@@ -74,25 +74,28 @@ const ShoppingPage = () => {
 
               {/* ✅ Variants Side by Side */}
               {item.variants?.length > 0 && (
-                <div className="flex flex-wrap justify-center gap-4 mt-4">
-                  {item.variants.map((variant, idx) => (
-                    <div
-                      key={idx}
-                      className="w-40 border p-2 rounded bg-white shadow-inner flex-shrink-0"
-                    >
-                      <p className="text-sm font-semibold text-amber-900">Color: {variant.color}</p>
-                      <p className="text-xs text-gray-600 mb-2">In stock: {variant.stock}</p>
-                      {variant.images?.[0]?.asset?.url && (
-                        <img
-                          src={variant.images[0].asset.url}
-                          alt={`${item.name} - ${variant.color}`}
-                          className="h-24 w-full object-cover rounded"
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
+  <div className="mt-4 w-full">
+    <h3 className="text-md font-semibold text-amber-900 mb-2">Variants</h3>
+    <div className="flex overflow-x-auto space-x-4 pb-2 scrollbar-thin scrollbar-thumb-amber-400">
+      {item.variants.map((variant, idx) => (
+        <div
+          key={idx}
+          className="w-40 flex-shrink-0 border p-2 rounded bg-white shadow-inner"
+        >
+          <p className="text-sm font-semibold text-amber-900">Color: {variant.color}</p>
+          <p className="text-xs text-gray-600 mb-2">In stock: {variant.stock}</p>
+          {variant.images?.[0]?.asset?.url && (
+            <img
+              src={variant.images[0].asset.url}
+              alt={`${item.name} - ${variant.color}`}
+              className="h-24 w-full object-cover rounded"
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 
               {/* ✅ Action Buttons */}
               <div className="flex gap-4 mt-auto pt-4">
