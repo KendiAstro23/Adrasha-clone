@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useWishlist } from './CartContext';
 
 const collections = [
@@ -30,43 +31,74 @@ const collections = [
     description: 'Traditional waist beads with cultural meaning.',
     price: 25,
   },
+  {
+    id: 'hair1',
+    name: 'Hair Accessories',
+    image: '/images/hair1.jpg',
+    description: 'Beautiful beaded hair ornaments.',
+    price: 20,
+  },
+  {
+    id: 'ankle1',
+    name: 'Anklets',
+    image: '/images/ankle1.jpg',
+    description: 'Delicate African-inspired anklets.',
+    price: 18,
+  },
 ];
 
 export default function FeaturedCollections() {
   const { addToWishlist } = useWishlist();
+
   return (
-    <section id="collections" className="py-12 bg-amber-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-serif font-bold text-amber-900 mb-8 text-center">Featured Collections</h2>
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
-          {collections.map((col, idx) => (
+    <section id="collections" className="bg-amber-50 w-full py-12 overflow-hidden">
+      <h2 className="text-4xl font-serif font-bold text-center text-amber-900 mb-10">
+        Featured Collections
+      </h2>
+
+      <div className="relative w-full overflow-hidden">
+        <motion.div
+          className="flex w-[200%] gap-6"
+          animate={{ x: ['0%', '-50%', '0%'] }}
+          transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
+        >
+          {[...collections, ...collections].map((col, index) => (
             <div
-              key={col.name}
-              className="min-w-[260px] max-w-xs bg-white rounded-2xl shadow-lg flex-shrink-0 snap-center border-2 border-amber-100 hover:border-emerald-400 transition-all duration-300 group relative overflow-hidden"
+              key={`${col.id}-${index}`}
+              className="w-[33.3333vw] flex-shrink-0"
             >
-              <img
-                src={col.image}
-                alt={col.name}
-                className="w-full h-48 object-cover rounded-t-2xl group-hover:scale-105 transition-transform duration-300"
-              />
-              {/* African motif overlay */}
-              <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-r from-amber-200/80 to-emerald-100/60 z-10" style={{clipPath:'polygon(0 0,100% 0,100% 100%,0 70%)'}} />
-              <div className="p-4 relative z-20 flex flex-col gap-2">
-                <h3 className="text-xl font-serif font-bold text-amber-900 mb-1">{col.name}</h3>
-                <p className="text-sm text-emerald-900 mb-2">{col.description}</p>
-                <span className="text-lg font-bold text-emerald-700">${col.price}</span>
-                <div className="flex gap-2 mt-2">
-                  <button className="bg-emerald-600 text-white px-4 py-2 rounded-full font-semibold shadow hover:bg-amber-600 transition-colors">Shop {col.name}</button>
-                  <button onClick={() => addToWishlist(col)} className="bg-white border border-amber-300 text-amber-900 px-4 py-2 rounded-full font-semibold shadow hover:bg-amber-100 transition-colors flex items-center gap-1" title="Add to Wishlist">
-                    <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.682l-7.682-7.682a4.5 4.5 0 010-6.364z" /></svg>
-                    Wishlist
-                  </button>
+              <div className="bg-white rounded-2xl shadow-xl border border-amber-200 overflow-hidden mx-2 h-full flex flex-col group">
+                <img
+                  src={col.image}
+                  alt={col.name}
+                  className="h-60 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="p-4 flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-amber-900">{col.name}</h3>
+                    <p className="text-sm text-emerald-800 mt-1">{col.description}</p>
+                  </div>
+                  <div className="mt-3 text-emerald-700 font-semibold text-lg">${col.price}</div>
+                  <div className="flex gap-3 mt-4">
+                    <button
+                      className="bg-emerald-600 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition"
+                      onClick={() => window.location.href = `/collections/${col.id}`}
+                    >
+                      Shop {col.name}
+                    </button>
+                    <button
+                      onClick={() => addToWishlist(col)}
+                      className="border border-amber-400 text-amber-900 px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-100 transition flex items-center gap-1"
+                    >
+                      ❤️ Wishlist
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-} 
+}

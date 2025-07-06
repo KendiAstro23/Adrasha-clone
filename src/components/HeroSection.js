@@ -1,15 +1,16 @@
 import React from 'react';
 
-const heroBg = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80'; // Replace with a culturally relevant image or video
-
 export default function HeroSection() {
   return (
     <section className="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
-      {/* Background Image */}
-      <img
-        src={heroBg}
-        alt="Adrasha Jewelry Hero"
-        className="absolute inset-0 w-full h-full object-cover opacity-80 z-0"
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-160 z-0"
+        src="/images/heroad.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       {/* Earth-tone Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-amber-900/80 via-amber-200/40 to-emerald-100/60 z-10" />

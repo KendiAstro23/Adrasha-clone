@@ -14,6 +14,12 @@ const spotlights = [
     fact: 'The "Gye Nyame" symbol means "except for God" and is a popular motif in African jewelry.'
   },
   {
+    title: 'Fulani Gold Earrings',
+    image: '/images/fulani_earrings.jpg',
+    description: 'Fulani gold earrings are iconic pieces of jewelry worn by Fulani women in West Africa. Handcrafted from gold or bronze, they are known for their large, crescent-shaped design that represents beauty and cultural identity.',
+    fact: 'Fulani women often pass down these earrings through generations as symbols of heritage and status.'
+  },  
+  {
     title: 'Cowrie Shells',
     image: '/images/ear4.jpg',
     description: 'Cowrie shells have been used as currency, jewelry, and spiritual tools across Africa. They symbolize wealth, fertility, and protection.',
@@ -24,9 +30,9 @@ const spotlights = [
 export default function CulturalSpotlight() {
   return (
     <section className="py-16 bg-emerald-100">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-serif font-bold text-amber-900 mb-10 text-center">Cultural Spotlight</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="max-w-8xl mx-auto px-6">
+        <h2 className="text-4xl md:text-4xl font-serif font-bold text-amber-900 mb-10 text-center">Cultural Spotlight</h2>
+        <div className="grid md:grid-cols-4 gap-8">
           {spotlights.map((item) => (
             <div key={item.title} className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border-2 border-emerald-200 hover:border-amber-400 transition-all duration-300 group relative overflow-hidden">
               <img

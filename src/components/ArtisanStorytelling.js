@@ -1,54 +1,100 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 
 const artisans = [
   {
-    name: 'Amina Njeri',
-    photo: '/images/ank2.jpg',
-    quote: 'Each bead tells a story of our heritage. I love sharing my culture through my craft.',
-    role: 'Beadwork Specialist, Nairobi',
+    name: 'Amina Mwangi',
+    company: 'Amina Adornments',
+    image: '/images/fd3-removebg-preview.png',
+    story: [
+      'Amina began her jewelry journey using basic materials she found in her rural town. As she explored her creativity, she discovered a talent for blending African tradition with contemporary design.',
+      'Today, Amina leads a growing team of women artisans who craft unique accessories that celebrate heritage and empower local communities. Her work is now showcased internationally, but she remains rooted in her mission of storytelling through craft.',
+    ],
   },
   {
-    name: 'Mwangi Otieno',
-    photo: '/images/brace2.jpg',
-    quote: 'Jewelry is more than adornment—it is a symbol of pride and tradition.',
-    role: 'Metal Artisan, Kisumu',
+    name: 'Lilian Otieno',
+    company: 'Urban Beads',
+    image: '/images/fd1-removebg-preview.png',
+    story: [
+      'Brian began experimenting with bead designs in his university dorm room. What started as a side hustle soon became a full-time passion.',
+      'He now collaborates with young artists across Kenya to create bold, expressive beadwork that reflects urban African identity. Urban Beads has been featured in fashion shows and concept stores around the world.',
+    ],
   },
   {
-    name: 'Fatuma Wambui',
-    photo: '/images/ear2.jpg',
-    quote: 'I learned from my mother and now teach my daughters. Our art lives on.',
-    role: 'Cowrie Shell Designer, Mombasa',
+    name: 'Cynthia Wambui',
+    company: 'Shanga Luxe',
+    image: '/images/fd2-removebg-preview.png',
+    story: [
+      'With a background in architecture, Cynthia approached jewelry design through the lens of structure and form. She began by repurposing scrap metal into wearable art.',
+      'Her brand, Shanga Luxe, is now synonymous with bold elegance and eco-conscious design. Cynthia trains aspiring artisans, helping them turn creativity into sustainable income.',
+    ],
+  },
+  {
+    name: 'Azari Kipkoech',
+    company: 'Azaris Roots',
+    image: '/images/fd4-removebg-preview.png',
+    story: [
+      'Growing up in a family of metalworkers, Daniel was always drawn to the forge. He revived old brass-working techniques and combined them with minimalist design.',
+      'Roots & Brass now exports timeless statement pieces that honor his Kalenjin heritage. Daniel is committed to keeping traditional techniques alive through mentorship and workshops.',
+    ],
+  },
+  {
+    name: 'Eunice Njeri',
+    company: 'EuniWear',
+    image: '/images/fd5-removebg-preview.png',
+    story: [
+      'Inspired by her grandmother’s handmade necklaces, Eunice launched EuniWear to bring traditional Kenyan designs to the modern wardrobe.',
+      'Her pieces are known for their intricate detail and storytelling. Eunice partners with women’s groups in rural areas to create jewelry that empowers both the wearer and the maker.',
+    ],
   },
 ];
 
-export default function ArtisanStorytelling() {
+const MeetArtisans = () => {
   return (
-    <section id="our-story" className="py-16 bg-emerald-50">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-serif font-bold text-amber-900 mb-10 text-center">Meet the Artisans</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {artisans.map((artisan) => (
-            <div key={artisan.name} className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border-2 border-emerald-100 hover:border-amber-400 transition-all duration-300 group relative overflow-hidden">
+    <section className="py-28 px-6 bg-white space-y-28">
+      <h2 className="text-5xl font-bold text-center mb-12 text-gray-900">Meet the Artisans</h2>
+      {artisans.map((artisan, index) => {
+        const isEven = index % 2 === 0;
+
+        return (
+          <motion.div
+            key={index}
+            className={`flex flex-col md:flex-row items-center ${
+              !isEven ? 'md:flex-row-reverse' : ''
+            } gap-16`}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            {/* Image */}
+            <div className="flex-1 text-center">
               <img
-                src={artisan.photo}
+                src={artisan.image}
                 alt={artisan.name}
-                className="w-32 h-32 object-cover rounded-full border-4 border-amber-200 mb-4 group-hover:scale-105 transition-transform duration-300"
+                className="mx-auto w-[400px] md:w-[520px] object-contain"
               />
-              <h3 className="text-xl font-serif font-bold text-emerald-900 mb-1">{artisan.name}</h3>
-              <span className="text-xs text-amber-700 mb-2 font-semibold">{artisan.role}</span>
-              <blockquote className="italic text-emerald-800 bg-amber-50 rounded-lg px-4 py-2 mt-2 mb-2 border-l-4 border-amber-400">“{artisan.quote}”</blockquote>
+              <div className="mt-6">
+                <h3 className="text-2xl md:text-3xl font-semibold text-gray-800">{artisan.name}</h3>
+                <p className="text-lg text-gray-500">{artisan.company}</p>
+              </div>
             </div>
-          ))}
-        </div>
-        {/* Optional: Video carousel or embedded video */}
-        <div className="mt-12 flex flex-col items-center">
-          <video className="rounded-xl shadow-lg w-full max-w-2xl" controls poster="/images/neck1.jpg">
-            <source src="/videos/artisans.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <span className="text-xs text-emerald-700 mt-2">Meet the Makers: Adrasha's Story</span>
-        </div>
-      </div>
+
+            {/* Story */}
+            <div className="flex-1 text-left">
+              {artisan.story.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-4"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        );
+      })}
     </section>
   );
-} 
+};
+
+export default MeetArtisans;
