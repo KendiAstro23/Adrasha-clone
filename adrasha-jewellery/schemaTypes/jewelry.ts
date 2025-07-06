@@ -26,6 +26,13 @@ export default defineType({
       validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
+        name: 'stock',
+        title: 'Stock (Default)',
+        type: 'number',
+        validation: (Rule) => Rule.required().min(0),
+      }),
+      
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',

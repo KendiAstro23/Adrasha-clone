@@ -18,6 +18,7 @@ const ShoppingPage = () => {
         name,
         description,
         price,
+        stock,
         category,
         featured,
         onSale,
@@ -69,21 +70,29 @@ const ShoppingPage = () => {
 
               <h2 className="mt-4 text-xl font-serif font-bold text-amber-800">{item.name}</h2>
               <p className="text-emerald-900 text-sm my-2 text-center">{item.description}</p>
+              <p className="text-sm text-gray-700 mb-2">Available stock: <strong>{item.stock ?? 0}</strong></p>
 
-              {/* ✅ Variants Section */}
-              {item.variants?.map((variant, idx) => (
-                <div key={idx} className="mt-4 w-full border p-2 rounded bg-white shadow-inner">
-                  <p className="text-sm font-semibold text-amber-900">Color: {variant.color}</p>
-                  <p className="text-xs text-gray-600 mb-2">In stock: {variant.stock}</p>
-                  {variant.images?.[0]?.asset?.url && (
-                    <img
-                      src={variant.images[0].asset.url}
-                      alt={`${item.name} - ${variant.color}`}
-                      className="h-40 w-full object-cover rounded"
-                    />
-                  )}
+              {/* ✅ Variants Side by Side */}
+              {item.variants?.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-4 mt-4">
+                  {item.variants.map((variant, idx) => (
+                    <div
+                      key={idx}
+                      className="w-40 border p-2 rounded bg-white shadow-inner flex-shrink-0"
+                    >
+                      <p className="text-sm font-semibold text-amber-900">Color: {variant.color}</p>
+                      <p className="text-xs text-gray-600 mb-2">In stock: {variant.stock}</p>
+                      {variant.images?.[0]?.asset?.url && (
+                        <img
+                          src={variant.images[0].asset.url}
+                          alt={`${item.name} - ${variant.color}`}
+                          className="h-24 w-full object-cover rounded"
+                        />
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
 
               {/* ✅ Action Buttons */}
               <div className="flex gap-4 mt-auto pt-4">
